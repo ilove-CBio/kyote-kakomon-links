@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大学入試 良問セレクション</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --accent: #f0b429;
+    --accent-ink: #1a1405;
+    --ink: #eef1f8;
+    --ink-dim: #a7b0c4;
+    --ink-faint: #6d7690;
+    --line: rgba(255,255,255,.09);
+    --card: linear-gradient(165deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    --c-math: #5b9dff;
+    --c-bio: #4ade80;
+    --c-chem: #c084fc;
+    --c-eng: #fb7185;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(900px 480px at 12% -80px, rgba(240,180,41,.13), transparent 60%),
+      radial-gradient(1000px 560px at 88% -120px, rgba(47,111,208,.20), transparent 60%),
+      linear-gradient(180deg, #0c1224 0%, #0a0f1e 46%, #070a14 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 30%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 30%, transparent 78%);
+  }
+  .wrap { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header { padding: 54px 0 10px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .34em; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-size: clamp(30px, 5.4vw, 46px); font-weight: 900; letter-spacing: .02em; line-height: 1.18; margin: 0 0 14px; }
+  h1 .accent { color: var(--accent); }
+  .subtitle { font-size: 15px; line-height: 1.9; color: var(--ink-dim); margin: 0 0 22px; max-width: 720px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .chip-stat {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 500;
+    background: rgba(255,255,255,.05); border: 1px solid var(--line); color: var(--ink-dim);
+    backdrop-filter: blur(6px);
+  }
+  .chip-stat b { color: var(--ink); font-weight: 900; font-size: 14px; }
+  .chip-stat .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .banner {
+    border: 1px solid rgba(240,180,41,.38);
+    background: linear-gradient(165deg, rgba(240,180,41,.10), rgba(240,180,41,.04));
+    color: #f3d489; border-radius: 14px; padding: 14px 18px;
+    font-size: 13.5px; line-height: 1.8; margin: 6px 0 8px;
+  }
+  .banner strong { color: #ffd968; }
+  .howto { font-size: 13px; color: var(--ink-faint); line-height: 1.8; margin: 10px 2px 0; }
+
+  .filters {
+    position: sticky; top: 0; z-index: 20;
+    margin: 22px -20px 0; padding: 14px 20px 12px;
+    background: rgba(9,12,22,.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .frow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .frow:last-child { margin-bottom: 2px; }
+  .flabel { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ink-faint); width: 44px; flex: none; }
+  .seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+  .seg button {
+    border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--ink-dim);
+    border-radius: 999px; padding: 7px 16px; font-size: 13.5px; font-weight: 500; cursor: pointer;
+    font-family: inherit; transition: all .16s ease;
+  }
+  .seg button:hover { color: var(--ink); border-color: rgba(255,255,255,.28); }
+  .seg button.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+  select {
+    background: rgba(255,255,255,.05); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 10px; padding: 8px 12px; font-size: 13.5px; font-family: inherit; cursor: pointer;
+    max-width: 100%;
+  }
+  select:focus { outline: 2px solid rgba(240,180,41,.55); outline-offset: 1px; }
+  .count { margin-left: auto; font-size: 13px; color: var(--ink-faint); }
+  .count b { color: var(--accent); font-size: 16px; font-weight: 900; }
+
+  main { padding: 26px 0 30px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(322px, 1fr)); gap: 18px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    padding: 20px 20px 17px; display: flex; flex-direction: column; gap: 10px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.38);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(240,180,41,.45);
+    box-shadow: 0 22px 44px rgba(0,0,0,.5), 0 0 0 1px rgba(240,180,41,.12); }
+  .card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px; border-radius: 999px;
+    padding: 4px 12px; font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .pill.math { color: var(--c-math); background: rgba(91,157,255,.13); }
+  .pill.bio  { color: var(--c-bio);  background: rgba(74,222,128,.12); }
+  .pill.chem { color: var(--c-chem); background: rgba(192,132,252,.13); }
+  .pill.eng  { color: var(--c-eng);  background: rgba(251,113,133,.12); }
+  .badge { margin-left: auto; border-radius: 999px; padding: 4px 11px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+  .badge.official { color: #bcd3f7; background: rgba(88,132,199,.18); border: 1px solid rgba(120,164,232,.35); }
+  .badge.self { color: var(--accent-ink); background: var(--accent); }
+  .badge.selfp { color: var(--accent); background: transparent; border: 1px solid rgba(240,180,41,.55); }
+  .badge.none { color: var(--ink-faint); background: transparent; border: 1px dashed rgba(255,255,255,.25); }
+  .card h2 { font-size: 17.5px; font-weight: 900; line-height: 1.5; margin: 0; letter-spacing: .01em; }
+  .card h2 .yr { color: var(--ink-dim); font-weight: 700; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11.5px; color: var(--ink-dim); background: rgba(255,255,255,.05);
+         border: 1px solid rgba(255,255,255,.07); border-radius: 6px; padding: 3px 9px; }
+  .point { font-size: 13.5px; line-height: 1.85; color: var(--ink-dim); margin: 0; flex: 1; }
+  .links { display: flex; gap: 9px; flex-wrap: wrap; padding-top: 4px; border-top: 1px solid rgba(255,255,255,.06); margin-top: 2px; padding-top: 13px; }
+  a.btn {
+    display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    border-radius: 10px; padding: 9px 16px; font-size: 13.5px; font-weight: 700; transition: all .15s ease;
+  }
+  a.btn.problem { background: var(--accent); color: var(--accent-ink); }
+  a.btn.problem:hover { background: #ffc84d; }
+  a.btn.answer { background: rgba(255,255,255,.06); color: var(--ink); border: 1px solid var(--line); }
+  a.btn.answer:hover { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.1); }
+  .pending { font-size: 13px; color: var(--ink-faint); padding: 9px 2px; }
+  .empty { text-align: center; color: var(--ink-faint); font-size: 14px; padding: 60px 0; display: none; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 14px; padding: 22px 0 44px;
+           font-size: 12.5px; color: var(--ink-faint); line-height: 1.9; }
+  footer a { color: var(--ink-dim); }
+  @media (max-width: 560px) {
+    header { padding-top: 38px; }
+    .grid { grid-template-columns: 1fr; }
+    .flabel { width: 100%; }
+    .count { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">SELECTED PROBLEMS</p>
+    <h1>大学入試 <span class="accent">良問</span>セレクション</h1>
+    <p class="subtitle">国公立大学の入試問題から、質と難易度で選び抜いた良問集。岡山大の合格レベル帯（基礎〜標準で確実に取る問題／標準〜やや難で差がつく問題）を基準に、東進の過去問と選定メモをもとにキュレーションしました。</p>
+    <div class="chips" id="statChips"></div>
+    <div class="banner"><strong>⚠ 注意</strong>：このセレクションはAI（Muse）が過去問ファイルを収集・整理して作成したものです。収録漏れ・分類ミス・リンクの誤りが含まれている可能性があります。問題・解答リンクはGoogle Drive上の実ファイルへのリンクです。各カードの問題PDFは「科目全体の冊子」で、カードに記載の大問が含まれています。</div>
+    <p class="howto">絞り込み：科目チップ／大学／分野タグでフィルタできます。解答バッジは <b>公式解答</b>（東進・大学公表の解答）、<b>自作解答（TeX）</b>（公式解答がない問題にKKTeX形式で作成した解答）、<b>作成予定</b>（解答が未公表で自作解答を準備中）を区別しています。</p>
+  </header>
+
+  <div class="filters">
+    <div class="frow">
+      <span class="flabel">科目</span>
+      <div class="seg" id="subjectSeg"></div>
+      <span class="count" id="countLabel"></span>
+    </div>
+    <div class="frow">
+      <span class="flabel">大学</span>
+      <select id="univSel"><option value="">すべての大学</option></select>
+      <span class="flabel" style="width:auto;margin-left:10px;">分野</span>
+      <select id="tagSel"><option value="">すべての分野</option></select>
+    </div>
+  </div>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty">条件に合う問題がありません。絞り込みを変えてみてください。</div>
+  </main>
+
+  <footer>
+    出典：東進 大学入試問題過去問データベース、各大学公表資料。自作解答は公式解答ではありません（KKTeX形式で作成し、数学は数値を検証済み）。<br>
+    関連：<a href="../">共通テスト過去問リンク集</a>
+  </footer>
+</div>
+
+<script>
+const DATA = [{"univ": "広島大学", "year": 2025, "subject": "生物", "daimon": "第Ⅳ問 ジベレリンによる成長制御", "tags": ["植物の環境応答", "遺伝情報"], "point": "ジベレリンによる成長制御をシロイヌナズナ変異体で追う実験考察。植物ホルモン×遺伝の複合で、標準〜やや難。", "problem_url": "https://drive.google.com/file/d/12uMXtPF3AIpP0PLeLw1JlwFjXGmdewJn/view?usp=drivesdk", "problem_name": "(問題)広島大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1-3lFW-CNTDrdm_87xGNGaqn8Sl-yor2f/view?usp=drivesdk", "answer_name": "(解答)広島大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "熊本大学", "year": 2024, "subject": "生物", "daimon": "第1問 遺伝子組換え", "tags": ["遺伝情報", "バイオテクノロジー"], "point": "GFP・プロモーター・転写因子・制限酵素（HindIII）を扱う遺伝子組換えの王道問題。発現と遺伝子操作の基礎〜標準を固める。", "problem_url": "https://drive.google.com/file/d/1pRb9nLM7CzUMV3CBdrY5RfO8HqHi3Rdz/view?usp=drivesdk", "problem_name": "(問題)熊本大学2024年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1eHt3pRYfSQVSizpdVn8Anyg-WiwIZFGE/view?usp=drivesdk", "answer_name": "(解答)熊本大学2024年度生物.pdf", "answer_type": "official"}, {"univ": "信州大学", "year": 2025, "subject": "生物", "daimon": "大問2 DNA複製と遺伝子を扱う技術", "tags": ["遺伝情報", "バイオテクノロジー"], "point": "岡崎フラグメント・PCR・電気泳動・サンガー法・DNA鑑定まで、複製と遺伝子技術の総ざらい。200字程度の論述あり。", "problem_url": "https://drive.google.com/file/d/13I5d7f7I-mvj1PkX99lkMO7SQy8cgfon/view?usp=drivesdk", "problem_name": "(問題)信州大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1_dasNOcQx36_K2lmKzSmknqnHzhTN65l/view?usp=drivesdk", "answer_name": "(解答)信州大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "新潟大学", "year": 2025, "subject": "生物", "daimon": "第1問 遺伝情報の発現", "tags": ["遺伝情報"], "point": "半保存的複製・複製フォーク・ポリソームに分子量計算と30字・100字論述。遺伝情報の発現の総合問題。", "problem_url": "https://drive.google.com/file/d/1-05qx3MWn1X2PxYJJ_w10sxbF2MBOSRt/view?usp=drivesdk", "problem_name": "(問題)新潟大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/11vTISXjLOt--OHlABSaaiVeZ8IvvZLjC/view?usp=drivesdk", "answer_name": "(解答)新潟大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "静岡大学", "year": 2025, "subject": "生物", "daimon": "大問1 ヒトの代謝と血糖調節", "tags": ["代謝", "恒常性"], "point": "解糖系・クエン酸回路・電子伝達系から糖新生とホルモン調節まで。ヒトの代謝と血糖調節を一気に整理できる。", "problem_url": "https://drive.google.com/file/d/1ur0vlz_8Ffz4XoHAKLwgo_OxA8_ZN1vc/view?usp=drivesdk", "problem_name": "(問題)静岡大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1V7YnTpGi5mVdylBZ597I1Z8W_qBsWPot/view?usp=drivesdk", "answer_name": "(解答)静岡大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "山口大学", "year": 2025, "subject": "生物", "daimon": "第3問 発生・遺伝子発現と免疫", "tags": ["生殖と発生", "免疫"], "point": "発生と遺伝子発現に、PD-1/PD-L1の免疫チェックポイント阻害薬という現代的題材を絡めた問題。80字論述あり。", "problem_url": "https://drive.google.com/file/d/1TD8SllX-3US6OLbnnp44inOY4KdllK7V/view?usp=drivesdk", "problem_name": "(問題)山口大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/13JV9XHuDdVs1RinE-vwaMQBF5h2qKcaY/view?usp=drivesdk", "answer_name": "(解答)山口大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2025, "subject": "生物", "daimon": "第Ⅱ問 消化・吸収", "tags": ["恒常性"], "point": "小腸のグルコース吸収に血液量・血漿の計算と100字論述×2。計算と記述の両方を鍛える。", "problem_url": "https://drive.google.com/file/d/1eKiby69STV3r-svqp7SC_oLZokwI6UPL/view?usp=drivesdk", "problem_name": "(問題)神戸大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1vfxSzd-9BBmYrxX69PD1JfY0A-SBfZQ7/view?usp=drivesdk", "answer_name": "(解答)神戸大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2024, "subject": "生物", "daimon": "第2問 神経の移植・再生と分化", "tags": ["神経・感覚", "生殖と発生"], "point": "神経の移植・再生と分化を、電子顕微鏡像と表の読み取りで考察するデータ読解型。", "problem_url": "https://drive.google.com/file/d/1heRwWnHZveNI55uMZ5YHaBcl3azICM6N/view?usp=drivesdk", "problem_name": "(問題)千葉大学2024年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1aKx8djjhZ3fZcYXQyFolgGS1o2jnk4N6/view?usp=drivesdk", "answer_name": "(解答)千葉大学2024年度生物.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2025, "subject": "生物", "daimon": "第Ⅱ問 タンパク質の構造と機能", "tags": ["タンパク質", "生命現象と物質"], "point": "タンパク質の二次構造・立体構造を図から読み取る。岡山大の頻出単元に直結する1問。", "problem_url": "https://drive.google.com/file/d/1x3VwNTo2g_Yb9yLsc8QTVGdR_vMXD8ne/view?usp=drivesdk", "problem_name": "(問題)筑波大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1eBl9xVA__F7GI1QlqHLpAFk_zfmcX73Z/view?usp=drivesdk", "answer_name": "(解答)筑波大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "金沢大学", "year": 2025, "subject": "生物", "daimon": "第Ⅱ問 体温調節・自律神経系", "tags": ["恒常性", "神経・感覚"], "point": "発汗グラフと寒冷刺激実験で体温調節と自律神経系を問う。東進に解答が未掲載のため、自作解答を作成予定。", "problem_url": "https://drive.google.com/file/d/1Y3qdwaf06xr3d_cFcSJtcKZun3SdO5Z9/view?usp=drivesdk", "problem_name": "(問題)金沢大学2025年度生物.pdf", "answer_url": null, "answer_name": null, "answer_type": "none"}, {"univ": "広島大学", "year": 2025, "subject": "生物", "daimon": "第Ⅱ問 遺伝情報の発現", "tags": ["遺伝情報"], "point": "翻訳とコドン表、ニーレンバーグの実験。短めで遺伝情報の発現の基礎固めに最適。", "problem_url": "https://drive.google.com/file/d/12uMXtPF3AIpP0PLeLw1JlwFjXGmdewJn/view?usp=drivesdk", "problem_name": "(問題)広島大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1-3lFW-CNTDrdm_87xGNGaqn8Sl-yor2f/view?usp=drivesdk", "answer_name": "(解答)広島大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "熊本大学", "year": 2024, "subject": "生物", "daimon": "第2問 動物の感覚", "tags": ["神経・感覚"], "point": "受容器・視細胞の分布・適刺激。動物の感覚の基礎〜標準を短時間で確認できる。", "problem_url": "https://drive.google.com/file/d/1pRb9nLM7CzUMV3CBdrY5RfO8HqHi3Rdz/view?usp=drivesdk", "problem_name": "(問題)熊本大学2024年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1eHt3pRYfSQVSizpdVn8Anyg-WiwIZFGE/view?usp=drivesdk", "answer_name": "(解答)熊本大学2024年度生物.pdf", "answer_type": "official"}, {"univ": "信州大学", "year": 2025, "subject": "生物", "daimon": "大問1 ヒトの受容器と中枢神経系", "tags": ["神経・感覚"], "point": "ヒトの受容器と中枢神経系を約2頁でコンパクトに学べる短めの良問。", "problem_url": "https://drive.google.com/file/d/13I5d7f7I-mvj1PkX99lkMO7SQy8cgfon/view?usp=drivesdk", "problem_name": "(問題)信州大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1_dasNOcQx36_K2lmKzSmknqnHzhTN65l/view?usp=drivesdk", "answer_name": "(解答)信州大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "新潟大学", "year": 2025, "subject": "生物", "daimon": "第3問 免疫と植物の防御応答", "tags": ["免疫", "植物の環境応答"], "point": "自然免疫から孔辺細胞・エチレン・ばか苗病まで、動物と植物の防御応答を横断する。", "problem_url": "https://drive.google.com/file/d/1-05qx3MWn1X2PxYJJ_w10sxbF2MBOSRt/view?usp=drivesdk", "problem_name": "(問題)新潟大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/11vTISXjLOt--OHlABSaaiVeZ8IvvZLjC/view?usp=drivesdk", "answer_name": "(解答)新潟大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "静岡大学", "year": 2025, "subject": "生物", "daimon": "大問2 神経系", "tags": ["神経・感覚"], "point": "活動電位・シナプス・IPSP。論述多めで神経分野の記述力を鍛える。", "problem_url": "https://drive.google.com/file/d/1ur0vlz_8Ffz4XoHAKLwgo_OxA8_ZN1vc/view?usp=drivesdk", "problem_name": "(問題)静岡大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1V7YnTpGi5mVdylBZ597I1Z8W_qBsWPot/view?usp=drivesdk", "answer_name": "(解答)静岡大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "山口大学", "year": 2025, "subject": "生物", "daimon": "第1問 種分化と系統樹", "tags": ["進化と系統"], "point": "種分化と系統樹、二名法。15字論述つきの短めの良問。", "problem_url": "https://drive.google.com/file/d/1TD8SllX-3US6OLbnnp44inOY4KdllK7V/view?usp=drivesdk", "problem_name": "(問題)山口大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/13JV9XHuDdVs1RinE-vwaMQBF5h2qKcaY/view?usp=drivesdk", "answer_name": "(解答)山口大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2025, "subject": "生物", "daimon": "第Ⅰ問 バイオマスと光合成", "tags": ["光合成", "生態と環境"], "point": "バイオマスとC3・C4植物の光合成。物質生産の基礎固めに。", "problem_url": "https://drive.google.com/file/d/1eKiby69STV3r-svqp7SC_oLZokwI6UPL/view?usp=drivesdk", "problem_name": "(問題)神戸大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1vfxSzd-9BBmYrxX69PD1JfY0A-SBfZQ7/view?usp=drivesdk", "answer_name": "(解答)神戸大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2024, "subject": "生物", "daimon": "第3問 会話形式の恒常性", "tags": ["恒常性"], "point": "災害時の自律神経・内分泌を会話形式で追う恒常性問題。読みやすくて実戦的。", "problem_url": "https://drive.google.com/file/d/1heRwWnHZveNI55uMZ5YHaBcl3azICM6N/view?usp=drivesdk", "problem_name": "(問題)千葉大学2024年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1aKx8djjhZ3fZcYXQyFolgGS1o2jnk4N6/view?usp=drivesdk", "answer_name": "(解答)千葉大学2024年度生物.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2025, "subject": "生物", "daimon": "第Ⅰ問 動物の発生", "tags": ["生殖と発生"], "point": "ウニ16細胞期胚と遺伝子発現から動物の発生を問う標準問題。", "problem_url": "https://drive.google.com/file/d/1x3VwNTo2g_Yb9yLsc8QTVGdR_vMXD8ne/view?usp=drivesdk", "problem_name": "(問題)筑波大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1eBl9xVA__F7GI1QlqHLpAFk_zfmcX73Z/view?usp=drivesdk", "answer_name": "(解答)筑波大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "信州大学", "year": 2025, "subject": "生物", "daimon": "大問4 酵素", "tags": ["酵素", "生命現象と物質"], "point": "カタラーゼの活性部位と阻害。30字論述×3で酵素を短く仕上げる。", "problem_url": "https://drive.google.com/file/d/13I5d7f7I-mvj1PkX99lkMO7SQy8cgfon/view?usp=drivesdk", "problem_name": "(問題)信州大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1_dasNOcQx36_K2lmKzSmknqnHzhTN65l/view?usp=drivesdk", "answer_name": "(解答)信州大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2025, "subject": "化学", "daimon": "第Ⅲ問 有機構造決定", "tags": ["有機化学", "構造決定"], "point": "分子量506の有機構造決定。二糖・不飽和脂肪酸・単糖にフェーリング反応・銀鏡反応・元素分析。得意な有機の盲点「構造決定」に直撃する。", "problem_url": "https://drive.google.com/file/d/1n3zwEK0-awUHrYE2drKhuHNv4w-B0SIz/view?usp=drivesdk", "problem_name": "(問題)筑波大学2025年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1nYc67bMHXxStuUjxywPjuODomv7_VgWk/view?usp=drivesdk", "answer_name": "(解答)筑波大学2025年度化学.pdf", "answer_type": "official"}, {"univ": "金沢大学", "year": 2025, "subject": "化学", "daimon": "第Ⅳ問 高分子・タンパク質", "tags": ["高分子"], "point": "インスリンの一次構造とアミロペクチンの平均重合度計算、過程の記述まで問う高分子の良問。", "problem_url": "https://drive.google.com/file/d/1wzmM2nly8swQXKbkahvxzDR0a6JVVv_t/view?usp=drivesdk", "problem_name": "(問題)金沢大学2025年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1AKt5bpAVWOnx7oaJ5dnGb8bn1jXP7xfh/view?usp=drivesdk", "answer_name": "(解答)金沢大学2025年度化学.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2024, "subject": "化学", "daimon": "第1問 過酸化水素の酸化還元滴定", "tags": ["理論化学", "酸化還元"], "point": "過酸化水素の過マンガン酸カリウムによる酸化還元滴定。過程の記述と30字論述で滴定計算を固める。", "problem_url": "https://drive.google.com/file/d/1Dc5_np6P76LlSIn5cqooMGGe87zh6Pmt/view?usp=drivesdk", "problem_name": "(問題)千葉大学2024年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1iDvNNudO5rA5Hw3xisPsypkv0Li2OtwH/view?usp=drivesdk", "answer_name": "(解答)千葉大学2024年度化学.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2025, "subject": "化学", "daimon": "第Ⅲ問 有機構造決定", "tags": ["有機化学", "構造決定"], "point": "C5H8O4を起点に化合物A〜Hを追う構造決定。加水分解・中和滴定・水素付加の複合問題。", "problem_url": "https://drive.google.com/file/d/1AS5ep9GOrwrVxEMgZNMUD7n0GEp6zmRl/view?usp=drivesdk", "problem_name": "(問題)神戸大学2025年度化学.pdf", "answer_url": "https://drive.google.com/file/d/19LV_Dz8t6RSlBEtoDaEmc0ZL3tkQKweF/view?usp=drivesdk", "answer_name": "(解答)神戸大学2025年度化学.pdf", "answer_type": "official"}, {"univ": "広島大学", "year": 2025, "subject": "化学", "daimon": "第Ⅲ問 油脂の構造決定", "tags": ["有機化学", "構造決定"], "point": "けん化から脂肪酸の構造式・立体異性体の数・酸化開裂まで。油脂の構造決定の決定版。", "problem_url": "https://drive.google.com/file/d/17fAlcMfrbk2Qx8KcS0gE9NNAS2-FUiXm/view?usp=drivesdk", "problem_name": "(問題)広島大学2025年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1WLlKIxu-qKs7d0eT5AlQGPR3qtnkF0Ci/view?usp=drivesdk", "answer_name": "(解答)広島大学2025年度化学.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2024, "subject": "数学", "daimon": "第5問 確率・極限", "tags": ["確率", "極限"], "point": "格子点から作る三角形の面積の確率と、その極限を問う融合問題。標準〜やや難。", "problem_url": "https://drive.google.com/file/d/1gSvnXFyM9tJuVa_DiOqnCX2X7wEAYOO_/view?usp=drivesdk", "problem_name": "(問題)千葉大学2024年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1UKLtJSl1kqkX15sbPPC9YawZryOtJm1o/view?usp=drivesdk", "answer_name": "(解答)千葉大学2024年度数学.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2025, "subject": "数学", "daimon": "〔2〕 複素数平面", "tags": ["複素数平面"], "point": "三次方程式の虚数解を複素数平面で処理し、証明まで仕上げる。岡山頻出の複素数対策に。", "problem_url": "https://drive.google.com/file/d/1LxaL_O69xDFEfMpzKOBMxvT1ev5UAOt4/view?usp=drivesdk", "problem_name": "(問題)筑波大学2025年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1HfY3Nf1YzgDVF1OxQ7yReaL_Nk-QQERY/view?usp=drivesdk", "answer_name": "(解答)筑波大学2025年度数学.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2025, "subject": "数学", "daimon": "理系第1問 微積分", "tags": ["微分・積分"], "point": "三次関数の極値と解の個数。微積の典型を確実に取るための1問。", "problem_url": "https://drive.google.com/file/d/1CvGhNXsCBYxtFKdB1Djwz49qqexqugCT/view?usp=drivesdk", "problem_name": "(問題)神戸大学2025年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1kPdEnykEgKqe4vh3eSyHcPudFAMVURUQ/view?usp=drivesdk", "answer_name": "(解答)神戸大学2025年度数学.pdf", "answer_type": "official"}, {"univ": "広島大学", "year": 2025, "subject": "数学", "daimon": "〔2〕 漸化式・ベクトル", "tags": ["数列", "ベクトル"], "point": "点列の反復を漸化式で追い、対数評価までつなぐ漸化式×ベクトルの融合良問。", "problem_url": "https://drive.google.com/file/d/1rFRUabzA5F3k8TNeGaUqpOLET79iOar6/view?usp=drivesdk", "problem_name": "(問題)広島大学2025年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1W6aSPmM8IDoD3epHX7YdNYWbZpSd8vp4/view?usp=drivesdk", "answer_name": "(解答)広島大学2025年度数学.pdf", "answer_type": "official"}, {"univ": "金沢大学", "year": 2025, "subject": "数学", "daimon": "第1問 平面ベクトル", "tags": ["ベクトル"], "point": "内積→大きさ→位置ベクトルと流れる、きれいな平面ベクトル。基礎〜標準。（収録冊子は文系用だが、第1問は理系でも通用する内容）", "problem_url": "https://drive.google.com/file/d/1wu6bVNfF6q2YVvlVtc78dsxyki4NJ21l/view?usp=drivesdk", "problem_name": "(問題)金沢大学2025年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1_n2BMB1_qmGxewuSstu3N9HJvz2uiJU8/view?usp=drivesdk", "answer_name": "(解答)金沢大学2025年度数学.pdf", "answer_type": "official"}, {"univ": "広島大学", "year": 2026, "subject": "生物", "daimon": "第Ⅲ問 生命の起源と光合成細菌", "tags": ["進化と系統", "生態と環境"], "point": "ウィノグラスキーカラム実験で生命の起源と光合成細菌を考察。進化・系統×生態系・物質循環の実験問題。", "problem_url": "https://drive.google.com/file/d/1SjXD5M6Dm89nXdk1g_UHJZHE6WO-umk4/view?usp=drivesdk", "problem_name": "(問題)広島大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1Yr2rEdQIC6a9Bi0hSjDfhNoV2not1thY/view?usp=drivesdk", "answer_name": "(解答)広島大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "広島大学", "year": 2026, "subject": "生物", "daimon": "第Ⅳ問 クオラムセンシング", "tags": ["遺伝情報"], "point": "Vibrio fischeriの生物発光とluxオペロン。クオラムセンシングという新しい題材で発現制御を問う。", "problem_url": "https://drive.google.com/file/d/1SjXD5M6Dm89nXdk1g_UHJZHE6WO-umk4/view?usp=drivesdk", "problem_name": "(問題)広島大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1Yr2rEdQIC6a9Bi0hSjDfhNoV2not1thY/view?usp=drivesdk", "answer_name": "(解答)広島大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2026, "subject": "生物", "daimon": "第Ⅱ問 核移植実験", "tags": ["生殖と発生", "遺伝情報"], "point": "核移植実験で分化と遺伝情報の等価性を問う古典的良問。40字以内論述あり。", "problem_url": "https://drive.google.com/file/d/1CVXVt4Nyt1MjI8pj3zEH0MFPulCZ4VBz/view?usp=drivesdk", "problem_name": "(問題)神戸大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/19ugHpoEdhNMdA2enz8jhPsQlhqYsuGiL/view?usp=drivesdk", "answer_name": "(解答)神戸大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "神戸大学", "year": 2026, "subject": "生物", "daimon": "第Ⅲ問 植物の陸上進出と生殖", "tags": ["生殖と発生", "植物の環境応答"], "point": "植物の陸上進出・配偶子形成・重複受精・開花制御まで。植物分野の総合問題。", "problem_url": "https://drive.google.com/file/d/1CVXVt4Nyt1MjI8pj3zEH0MFPulCZ4VBz/view?usp=drivesdk", "problem_name": "(問題)神戸大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/19ugHpoEdhNMdA2enz8jhPsQlhqYsuGiL/view?usp=drivesdk", "answer_name": "(解答)神戸大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2026, "subject": "生物", "daimon": "第1問 遺伝子組換えとlacオペロン", "tags": ["遺伝情報", "バイオテクノロジー"], "point": "遺伝子組換えとlacオペロン、青白判定の実験考察。100字論述あり。", "problem_url": "https://drive.google.com/file/d/1BLFUDAdjpve1lIEyugVQY26O6mFsyaS1/view?usp=drivesdk", "problem_name": "(問題)千葉大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1TRhZboVYEBPWV558iXmE9uhRkxRGdsE4/view?usp=drivesdk", "answer_name": "(解答)千葉大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2026, "subject": "生物", "daimon": "第3問 分子系統樹・分子時計", "tags": ["進化と系統"], "point": "分子系統樹と分子時計で分岐年代を計算する、進化を計算で問う問題。", "problem_url": "https://drive.google.com/file/d/1BLFUDAdjpve1lIEyugVQY26O6mFsyaS1/view?usp=drivesdk", "problem_name": "(問題)千葉大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1TRhZboVYEBPWV558iXmE9uhRkxRGdsE4/view?usp=drivesdk", "answer_name": "(解答)千葉大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "千葉大学", "year": 2026, "subject": "生物", "daimon": "第4問 乾燥ストレスとアブシシン酸", "tags": ["植物の環境応答"], "point": "植物の乾燥ストレスとアブシシン酸（ABA）の品種間比較実験。植物ホルモンの実験考察。", "problem_url": "https://drive.google.com/file/d/1BLFUDAdjpve1lIEyugVQY26O6mFsyaS1/view?usp=drivesdk", "problem_name": "(問題)千葉大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1TRhZboVYEBPWV558iXmE9uhRkxRGdsE4/view?usp=drivesdk", "answer_name": "(解答)千葉大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2026, "subject": "生物", "daimon": "第Ⅰ問 テトロドトキシンと神経", "tags": ["神経・感覚"], "point": "テトロドトキシン（TTX）と神経の興奮・膜電位を対話形式で考察する。", "problem_url": "https://drive.google.com/file/d/1WVqAosedC3D-JCUCuKQLvjvhu0gJpFV2/view?usp=drivesdk", "problem_name": "(問題)筑波大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1OxL2uEl8O9k9xrfoWpN2-B_BDB4E8ybF/view?usp=drivesdk", "answer_name": "(解答)筑波大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "筑波大学", "year": 2026, "subject": "生物", "daimon": "第Ⅱ問 光合成の進化", "tags": ["進化と系統", "光合成"], "point": "光合成の進化・陸上進出・被子植物の花と種分化。60字論述あり。", "problem_url": "https://drive.google.com/file/d/1WVqAosedC3D-JCUCuKQLvjvhu0gJpFV2/view?usp=drivesdk", "problem_name": "(問題)筑波大学2026年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1OxL2uEl8O9k9xrfoWpN2-B_BDB4E8ybF/view?usp=drivesdk", "answer_name": "(解答)筑波大学2026年度生物.pdf", "answer_type": "official"}, {"univ": "金沢大学", "year": 2026, "subject": "生物", "daimon": "第Ⅱ問 免疫", "tags": ["免疫", "恒常性"], "point": "血清療法・予防接種から免疫を問う恒常性の問題。東進に解答が未掲載のため、自作解答を作成予定。", "problem_url": "https://drive.google.com/file/d/16qIh5W1L4WgjL-33ILiTEVJKnf-QKs2T/view?usp=drivesdk", "problem_name": "(問題)金沢大学2026年度生物.pdf", "answer_url": null, "answer_name": null, "answer_type": "none"}, {"univ": "兵庫県立大学", "year": 2026, "subject": "数学", "daimon": "数学（工学部）全5問", "tags": ["整数", "積分", "複素数平面"], "point": "公式解答が公表されていない年度。全5問の自作解答をKKTeX形式で作成し、全ての数値を検証済み。", "problem_url": "https://drive.google.com/file/d/1o_cm74fFE_gxZ75gE3NWF_Hmq-swrvBG/view?usp=drivesdk", "problem_name": "(問題)兵庫県立大学2026年度数学（工学部）.pdf", "answer_url": "https://drive.google.com/file/d/1EKZYUhR51nzpNgofw9joPLXGV-XkjkuF/view?usp=drivesdk", "answer_name": "(自作解答)兵庫県立大学2026年度数学（工学部）.pdf", "answer_type": "self"}, {"univ": "熊本大学", "year": 2025, "subject": "数学", "daimon": "数学② 全4問", "tags": ["数列", "複素数平面", "極限", "微分・積分"], "point": "数学②の公式解答が未掲載のため自作解答を作成（数値は検証済み）。漸化式と複素数、面積と軌跡、極限の4問。", "problem_url": "https://drive.google.com/file/d/1lrozs9URCoyd3VmJbr_WGcnhyGqqPBUZ/view?usp=drivesdk", "problem_name": "(問題)熊本大学2025年度数学.pdf", "answer_url": "https://drive.google.com/file/d/1pbjxxn9mNNMNLKSLYin7XmYQ-KSc3Z3N/view?usp=drivesdk", "answer_name": "(自作解答)熊本大学2025年度数学②.pdf", "answer_type": "self"}, {"univ": "熊本大学", "year": 2025, "subject": "生物", "daimon": "全3問", "tags": ["恒常性", "生殖と発生", "生態と環境"], "point": "公式解答が未掲載のため自作解答を作成。酸素解離曲線・免疫・遺伝、分化・肝臓・iPS、植物ホルモンと生態の3大問。", "problem_url": "https://drive.google.com/file/d/1xLFU9I-FcxK1GmG2HsOo1Yq8JeFtgsRi/view?usp=drivesdk", "problem_name": "(問題)熊本大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1w4dSNFjGkCGbajIxmHJh7tPFf_76Kpef/view?usp=drivesdk", "answer_name": "(自作解答)熊本大学2025年度生物.pdf", "answer_type": "self"}, {"univ": "岡山大学", "year": 2025, "subject": "英語", "daimon": "英語 全問", "tags": ["英語"], "point": "公式解答が東進に未掲載の年度。KKTeX形式で自作解答を作成済み。", "problem_url": "https://drive.google.com/file/d/1m7kVQY1BAK2peQwOGYpSz8bNFO9L13ZN/view?usp=drivesdk", "problem_name": "(問題)岡山大学2025年度英語.pdf", "answer_url": "https://drive.google.com/file/d/17UVlL7Sg-vfAhbN6mE_aTWlAzpRip1vG/view?usp=drivesdk", "answer_name": "(自作解答)岡山大学2025年度英語.pdf", "answer_type": "self"}, {"univ": "岡山大学", "year": 2023, "subject": "英語", "daimon": "英語 全問", "tags": ["英語"], "point": "公式解答が東進に未掲載の年度。KKTeX形式で自作解答を作成済み。", "problem_url": "https://drive.google.com/file/d/1dP3wxQZp4GtU3qKBlGBGb6srL5Yd1uKt/view?usp=drivesdk", "problem_name": "(問題)岡山大学2023年度英語.pdf", "answer_url": "https://drive.google.com/file/d/1h0_KGR7pQZeK3-budTlfcDCF7qDrWDOx/view?usp=drivesdk", "answer_name": "(自作解答)岡山大学2023年度英語.pdf", "answer_type": "self"}, {"univ": "福井県立大学", "year": 2024, "subject": "英語", "daimon": "英語 全問", "tags": ["英語"], "point": "長文読解（インドの海水侵入と飲み水問題）＋自由英作文・条件英作文。公式解答のない年度の自作解答。", "problem_url": "https://drive.google.com/file/d/1K2mR4IvVL7AVbIv1OToQCfBZvoqWs2MR/view?usp=drivesdk", "problem_name": "(問題)福井県立大学2024年度英語.pdf", "answer_url": "https://drive.google.com/file/d/1aGaOgW7wB2cJ3i3FcIyGw9ZxgKQG-EmQ/view?usp=drivesdk", "answer_name": "(自作解答)福井県立大学2024年度英語.pdf", "answer_type": "self"}, {"univ": "福井県立大学", "year": 2026, "subject": "英語", "daimon": "英語（前期）", "tags": ["英語"], "point": "公式には出題意図のみが公表されている年度。自作解答は現在「部分版」を収録。", "problem_url": "https://drive.google.com/file/d/1BQZagYskCUncntAEtU-wAV_7vJiYHqXM/view?usp=drivesdk", "problem_name": "(問題)福井県立大学2026年度英語（前期・公式）.pdf", "answer_url": "https://drive.google.com/file/d/10HvBOxZVx4O_bRJIIduJg_d6l_POrUfF/view?usp=drivesdk", "answer_name": "(自作解答・部分版)福井県立大学2026年度英語（前期）.pdf", "answer_type": "self-partial"}, {"univ": "岡山大学", "year": 2025, "subject": "生物", "daimon": "第1問 遺伝子組換え・形質転換", "tags": ["遺伝情報", "バイオテクノロジー"], "point": "本命・岡山大の実物。遺伝子組換えと形質転換。岡山大で毎年出る遺伝情報分野の中心。", "problem_url": "https://drive.google.com/file/d/1zc2qng7aqZqqFhCEVoYqmXY2IrYG98UY/view?usp=drivesdk", "problem_name": "(問題)岡山大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1kYQW6Iq2vfdp1vsKYyM2JMYhCUFwYfVH/view?usp=drivesdk", "answer_name": "(解答)岡山大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "岡山大学", "year": 2025, "subject": "生物", "daimon": "第3問 グルコースの輸送・代謝", "tags": ["代謝", "酵素"], "point": "グルコースの輸送・代謝・呼吸・酵素。岡山頻出の代謝分野を本物の問題で。", "problem_url": "https://drive.google.com/file/d/1zc2qng7aqZqqFhCEVoYqmXY2IrYG98UY/view?usp=drivesdk", "problem_name": "(問題)岡山大学2025年度生物.pdf", "answer_url": "https://drive.google.com/file/d/1kYQW6Iq2vfdp1vsKYyM2JMYhCUFwYfVH/view?usp=drivesdk", "answer_name": "(解答)岡山大学2025年度生物.pdf", "answer_type": "official"}, {"univ": "岡山大学", "year": 2025, "subject": "化学", "daimon": "第3問 有機（ベンゼン誘導体）", "tags": ["有機化学"], "point": "本命・岡山大の有機。ベンゼン誘導体とマレイン酸。近年の岡山化学は理論→無機→有機→高分子の型が安定している。", "problem_url": "https://drive.google.com/file/d/1yx6Ze2Ritdjgpdqn0Bzdbjfx2UI_oRSe/view?usp=drivesdk", "problem_name": "(問題)岡山大学2025年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1r0HIRaKO4QtmiPbogikAv5-3HibZ3DYR/view?usp=drivesdk", "answer_name": "(解答)岡山大学2025年度化学.pdf", "answer_type": "official"}, {"univ": "岡山大学", "year": 2021, "subject": "化学", "daimon": "第3問 有機（エステルの構造決定）", "tags": ["有機化学", "構造決定"], "point": "岡山大のエステル構造決定の実物。弱点の構造決定を本命の過去問で鍛える。", "problem_url": "https://drive.google.com/file/d/1UhXGluyIJL1tWoSd5RDhr-dkOAB5TH8B/view?usp=drivesdk", "problem_name": "(問題)岡山大学2021年度化学.pdf", "answer_url": "https://drive.google.com/file/d/1Wp6UNK95-1hIIWsd2M0BM-jEjaINkq8U/view?usp=drivesdk", "answer_name": "(解答)岡山大学2021年度化学.pdf", "answer_type": "official"}];
+const SUBJ_CLASS = { "数学": "math", "生物": "bio", "化学": "chem", "英語": "eng" };
+const SUBJ_ORDER = ["すべて", "数学", "生物", "化学", "英語"];
+const ATYPE = {
+  "official":    { label: "公式解答", cls: "official" },
+  "self":        { label: "自作解答（TeX）", cls: "self" },
+  "self-partial":{ label: "自作解答・部分版", cls: "selfp" },
+  "none":        { label: "解答：作成予定", cls: "none" }
+};
+let curSubj = "すべて";
+
+/* 統計チップ */
+(function () {
+  const box = document.getElementById("statChips");
+  const total = document.createElement("span");
+  total.className = "chip-stat"; total.innerHTML = "全 <b>" + DATA.length + "</b> 問";
+  box.appendChild(total);
+  ["数学","生物","化学","英語"].forEach(s => {
+    const n = DATA.filter(c => c.subject === s).length;
+    const el = document.createElement("span");
+    el.className = "chip-stat";
+    el.innerHTML = '<span class="dot" style="background:var(--c-' + SUBJ_CLASS[s] + ')"></span>' + s + " <b>" + n + "</b>";
+    box.appendChild(el);
+  });
+  const self = document.createElement("span");
+  self.className = "chip-stat";
+  self.innerHTML = "自作解答つき <b>" + DATA.filter(c => c.answer_type.indexOf("self") === 0).length + "</b> 問";
+  box.appendChild(self);
+})();
+
+/* 科目セグメント */
+(function () {
+  const seg = document.getElementById("subjectSeg");
+  SUBJ_ORDER.forEach(s => {
+    const b = document.createElement("button");
+    b.textContent = s === "すべて" ? "すべて" : s;
+    if (s === curSubj) b.className = "active";
+    b.onclick = () => { curSubj = s; seg.querySelectorAll("button").forEach(x => x.classList.toggle("active", x === b)); render(); };
+    seg.appendChild(b);
+  });
+})();
+
+/* 大学・分野セレクト */
+(function () {
+  const univs = [...new Set(DATA.map(c => c.univ))];
+  const us = document.getElementById("univSel");
+  univs.forEach(u => { const o = document.createElement("option"); o.value = u; o.textContent = u; us.appendChild(o); });
+  const tags = [...new Set(DATA.flatMap(c => c.tags))].sort();
+  const ts = document.getElementById("tagSel");
+  tags.forEach(t => { const o = document.createElement("option"); o.value = t; o.textContent = t; ts.appendChild(o); });
+  us.onchange = render; ts.onchange = render;
+})();
+
+function render() {
+  const u = document.getElementById("univSel").value;
+  const t = document.getElementById("tagSel").value;
+  const list = DATA.filter(c =>
+    (curSubj === "すべて" || c.subject === curSubj) &&
+    (!u || c.univ === u) &&
+    (!t || c.tags.includes(t)));
+  document.getElementById("countLabel").innerHTML = "<b>" + list.length + "</b> 件";
+  document.getElementById("empty").style.display = list.length ? "none" : "block";
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+  list.forEach(c => {
+    const at = ATYPE[c.answer_type];
+    const card = document.createElement("article");
+    card.className = "card";
+    const top = document.createElement("div"); top.className = "card-top";
+    const pill = document.createElement("span");
+    pill.className = "pill " + SUBJ_CLASS[c.subject];
+    pill.innerHTML = '<span class="dot"></span>' + c.subject;
+    const badge = document.createElement("span");
+    badge.className = "badge " + at.cls; badge.textContent = at.label;
+    top.appendChild(pill); top.appendChild(badge);
+    const h = document.createElement("h2");
+    h.innerHTML = "";
+    h.textContent = c.univ + " ";
+    const yr = document.createElement("span"); yr.className = "yr"; yr.textContent = c.year + "年度";
+    h.appendChild(yr);
+    h.appendChild(document.createElement("br"));
+    h.appendChild(document.createTextNode(c.daimon));
+    const tags = document.createElement("div"); tags.className = "tags";
+    c.tags.forEach(tg => { const s = document.createElement("span"); s.className = "tag"; s.textContent = tg; tags.appendChild(s); });
+    const pt = document.createElement("p"); pt.className = "point"; pt.textContent = c.point;
+    const links = document.createElement("div"); links.className = "links";
+    if (c.problem_url) {
+      const a = document.createElement("a");
+      a.className = "btn problem"; a.href = c.problem_url; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "問題PDF";
+      links.appendChild(a);
+    }
+    if (c.answer_url) {
+      const a = document.createElement("a");
+      a.className = "btn answer"; a.href = c.answer_url; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = c.answer_type === "official" ? "解答PDF（公式）" : "解答PDF（自作）";
+      links.appendChild(a);
+    } else {
+      const s = document.createElement("span"); s.className = "pending"; s.textContent = "解答：作成予定";
+      links.appendChild(s);
+    }
+    card.appendChild(top); card.appendChild(h); card.appendChild(tags); card.appendChild(pt); card.appendChild(links);
+    grid.appendChild(card);
+  });
+}
+render();
+</script>
+</body>
+</html>
